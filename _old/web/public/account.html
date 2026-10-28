@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Your Account — Lineage II: High Five</title>
+	<meta name="description" content="Sign in with your game account to see your characters, their status and items.">
+	<meta name="robots" content="noindex">
+	<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="assets/fonts.css">
+	<link rel="stylesheet" href="assets/style.css?v=18">
+</head>
+<body>
+<main>
+	<header class="site-header" id="header">
+		<div class="header-inner">
+			<a href="index.html" class="brand text-gold">LINEAGE II</a>
+			<nav class="nav" id="site-nav">
+				<a href="index.html#world">World</a>
+				<a href="index.html#races">Races</a>
+				<a href="lore.html">Lore</a>
+				<a href="index.html#features">Features</a>
+				<a href="about.html">About</a>
+				<a href="account.html" aria-current="page">Account</a>
+			</nav>
+			<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+			<a href="index.html#join" class="header-cta">Play Free</a>
+		</div>
+	</header>
+
+	<section class="lore-hero account-hero">
+		<div class="lore-hero-bg" data-parallax="world"></div>
+		<div class="lore-hero-shade"></div>
+		<div class="embers" aria-hidden="true"></div>
+		<div class="lore-hero-content">
+			<p class="hero-kicker">Player Area</p>
+			<h1 class="lore-title text-gold" id="account-title">Your Account</h1>
+			<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			<p class="hero-tagline" id="account-tagline">Sign in with your game account to see your characters, their status and items.</p>
+		</div>
+	</section>
+
+	<!-- Signed out -->
+	<section class="account-section" id="signin" hidden>
+		<form class="signin-card" id="signin-form" novalidate>
+			<h2 class="signin-title text-gold">Sign In</h2>
+			<label class="field">
+				<span class="field-label">Account name</span>
+				<input name="login" autocomplete="username" required maxlength="45" spellcheck="false" autocapitalize="none">
+			</label>
+			<label class="field">
+				<span class="field-label">Password</span>
+				<input name="password" type="password" autocomplete="current-password" required maxlength="64">
+			</label>
+			<p class="form-error" id="signin-error" role="alert" hidden></p>
+			<button class="btn btn-primary signin-submit" type="submit">Enter Aden</button>
+			<p class="signin-note">Use the same account and password as in the game. No account yet? Log in to the game once and it is created for you.</p>
+			<p class="signin-note signin-insecure" id="insecure-note" hidden>This connection is not encrypted (http). Only sign in on a network you trust.</p>
+		</form>
+	</section>
+
+	<!-- Signed in -->
+	<section class="account-section" id="dashboard" hidden>
+		<div class="container">
+			<div class="account-bar">
+				<p>Signed in as <strong id="account-login"></strong><span class="gm-badge" id="account-gm" hidden>GM</span></p>
+				<button class="btn btn-outline btn-small" id="signout" type="button">Sign Out</button>
+			</div>
+
+			<h2 class="account-heading">Characters</h2>
+			<div class="char-list" id="char-list" role="list"></div>
+			<p class="about-empty" id="no-chars" hidden>No characters yet. Create one in the game and it will show up here.</p>
+
+			<div class="char-detail" id="char-detail" hidden>
+				<div class="char-head">
+					<div>
+						<p class="char-class" id="cd-class"></p>
+						<h2 class="char-name text-gold" id="cd-name"></h2>
+						<p class="char-sub" id="cd-sub"></p>
+					</div>
+					<div class="char-level"><span class="char-level-num text-gold" id="cd-level"></span><span class="char-level-label">Level</span></div>
+				</div>
+
+				<div class="bars">
+					<div class="bar bar-cp"><span class="bar-label">CP</span><span class="bar-track"><span class="bar-fill" id="cd-cp-bar"></span></span><span class="bar-value" id="cd-cp"></span></div>
+					<div class="bar bar-hp"><span class="bar-label">HP</span><span class="bar-track"><span class="bar-fill" id="cd-hp-bar"></span></span><span class="bar-value" id="cd-hp"></span></div>
+					<div class="bar bar-mp"><span class="bar-label">MP</span><span class="bar-track"><span class="bar-fill" id="cd-mp-bar"></span></span><span class="bar-value" id="cd-mp"></span></div>
+					<div class="bar bar-xp"><span class="bar-label">XP</span><span class="bar-track"><span class="bar-fill" id="cd-xp-bar"></span></span><span class="bar-value" id="cd-xp"></span></div>
+				</div>
+
+				<dl class="char-stats" id="cd-stats"></dl>
+
+				<div class="items-tabs" role="tablist">
+					<button class="items-tab is-active" type="button" role="tab" aria-selected="true" data-items="equipped">Equipped <span id="count-equipped"></span></button>
+					<button class="items-tab" type="button" role="tab" aria-selected="false" data-items="inventory">Inventory <span id="count-inventory"></span></button>
+					<button class="items-tab" type="button" role="tab" aria-selected="false" data-items="warehouse">Warehouse <span id="count-warehouse"></span></button>
+				</div>
+				<input class="items-search" id="items-search" type="search" placeholder="Search items…" aria-label="Search items">
+				<div class="items-table-wrap">
+					<table class="items-table">
+						<thead><tr><th id="items-first-col">Slot</th><th>Item</th><th>Grade</th><th class="num">Count</th></tr></thead>
+						<tbody id="items-body"></tbody>
+					</table>
+				</div>
+				<p class="about-footnote">Data is what the game server last saved: on logout and every few minutes while you play.</p>
+			</div>
+		</div>
+	</section>
+
+	<footer class="site-footer">
+		<p class="footer-brand">LINEAGE II · HIGH FIVE</p>
+		<p>Fan server. Lineage II is a trademark of NCSOFT Corporation.</p>
+	</footer>
+</main>
+
+<script src="assets/app.js?v=7"></script>
+<script src="assets/account.js?v=1"></script>
+</body>
+</html>

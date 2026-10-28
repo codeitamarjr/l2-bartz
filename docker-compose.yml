@@ -1,0 +1,147 @@
+# L2J Server (High Five) stack: MariaDB + login server + game server + website (Laravel, site/).
+# First run:   docker compose up -d db && docker compose run --rm dbinstall && docker compose up -d
+services:
+  db:
+    image: mariadb:11.8
+    restart: unless-stopped
+    # Let MariaDB flush and close cleanly (docker's default is 10 s, then SIGKILL).
+    stop_grace_period: 1m
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./data/mariadb:/var/lib/mysql
+      - ./docker/mariadb-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  dbinstall:
+    image: ${L2J_IMAGE}
+    command: ["dbinstall"]
+    profiles: ["setup"]
+    environment:
+      DB_HOST: db
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      # Only dbinstall gets these: it creates the website's read-only database user.
+      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      WEB_DB_PASSWORD: ${WEB_DB_PASSWORD}
+      L2WEB_DB_PASSWORD: ${L2WEB_DB_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+
+  login:
+    image: ${L2J_IMAGE}
+    command: ["login"]
+    restart: unless-stopped
+    stop_grace_period: 1m
+    environment:
+      # Set AUTO_CREATE_ACCOUNTS=False in .env once players register on the website (requires an email).
+      AUTO_CREATE_ACCOUNTS: ${AUTO_CREATE_ACCOUNTS:-True}
+      DB_HOST: db
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      LOGIN_JAVA_OPTS: ${LOGIN_JAVA_OPTS}
+    ports:
+      - "2106:2106"
+    volumes:
+      - ./data/logs/login:/opt/l2j/login/logs
+      - ./overrides/login:/opt/l2j/overrides/login:ro
+    depends_on:
+      db:
+        condition: service_healthy
+
+  game:
+    image: ${L2J_IMAGE}
+    command: ["game"]
+    restart: unless-stopped
+    # The game server saves every character, clan and item on shutdown; a clean stop takes ~12 s,
+    # longer with players online, so don't let docker kill it after the default 10 s.
+    stop_grace_period: 2m
+    environment:
+      DB_HOST: db
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      LOGIN_HOST: login
+      PUBLIC_HOST: ${PUBLIC_HOST}
+      # Website address shown to players in the news window and announcements
+      WEBSITE_URL: ${WEBSITE_URL:-http://${PUBLIC_HOST}:${SITE_PORT:-8080}}
+      GAME_JAVA_OPTS: ${GAME_JAVA_OPTS}
+    ports:
+      - "7777:7777"
+    volumes:
+      - ./data/state:/opt/l2j/state
+      - ./data/logs/game:/opt/l2j/game/logs
+      - ./data/geodata:/opt/l2j/game/data/geodata
+      - ./overrides/game:/opt/l2j/overrides/game:ro
+    depends_on:
+      - login
+
+  # The website: Laravel + Inertia + React + Filament admin (site/). Reads game data read-only; game changes
+  # go through l2web.game_actions, applied by the WebBridge script inside the game server.
+  # Public website through a Cloudflare Tunnel (https://l2-bartz.itjunior.dev -> site:80): no open web port, HTTPS by
+  # Cloudflare. Only runs with COMPOSE_PROFILES=public and CF_TUNNEL_TOKEN set in .env (the Pi), not in local dev.
+  tunnel:
+    image: cloudflare/cloudflared:2026.9.1
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CF_TUNNEL_TOKEN:-}
+    profiles: [public]
+    depends_on:
+      site:
+        condition: service_healthy
+
+  site:
+    # Built by build.sh (docker buildx build ... site), like the game server image.
+    image: ${SITE_IMAGE:-l2j-site:latest}
+    restart: unless-stopped
+    ports:
+      - "${SITE_PORT:-8080}:80"
+    environment:
+      APP_KEY: ${SITE_APP_KEY}
+      APP_URL: ${WEBSITE_URL:-http://${PUBLIC_HOST}:${SITE_PORT:-8080}}
+      APP_TIMEZONE: ${TZ:-UTC}
+      DB_CONNECTION: mariadb
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: l2web
+      DB_USERNAME: l2web
+      DB_PASSWORD: ${L2WEB_DB_PASSWORD}
+      GAME_DB_USERNAME: web
+      GAME_DB_PASSWORD: ${WEB_DB_PASSWORD}
+      SESSION_DRIVER: database
+      CACHE_STORE: database
+      QUEUE_CONNECTION: database
+      L2J_LOGIN_HOST: login
+      L2J_GAME_HOST: game
+      L2J_PUBLIC_HOST: ${PUBLIC_HOST}
+      L2J_CONFIG_DIR: /l2j/config
+      L2J_GEODATA_DIR: /l2j/geodata
+      GIFT_BOX_ENABLED: ${GIFT_BOX_ENABLED:-true}
+      # Same switch as the login server's, so the site tells players whether logging in creates an account.
+      AUTO_CREATE_ACCOUNTS: ${AUTO_CREATE_ACCOUNTS:-True}
+      # Email for registration and password resets (Resend over SMTP by default). With MAIL_MAILER=log (no email
+      # service yet) registration and "forgot password" stay closed on the site.
+      MAIL_MAILER: ${MAIL_MAILER:-log}
+      MAIL_HOST: ${MAIL_HOST:-smtp.resend.com}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-resend}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-no-reply@itjunior.dev}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:-Bartz}
+      TURNSTILE_SITE_KEY: ${TURNSTILE_SITE_KEY:-}
+      TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}
+      TRUSTED_PROXIES: ${TRUSTED_PROXIES:-}
+    volumes:
+      # Not /config: the FrankenPHP image keeps Caddy's own settings there.
+      - ./overrides/game/config:/l2j/config:ro
+      - ./data/geodata:/l2j/geodata:ro
+    depends_on:
+      db:
+        condition: service_healthy

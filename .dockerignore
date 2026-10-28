@@ -1,0 +1,6 @@
+dist/
+data/
+**/target/
+**/.git/
+site/
+_old/

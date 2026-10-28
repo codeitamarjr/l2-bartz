@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Lineage II: High Five — Return to Aden</title>
+	<meta name="description" content="A Lineage II High Five server. The gods are silent. The dragons awaken. Aden calls for heroes once more.">
+	<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="assets/fonts.css">
+	<link rel="stylesheet" href="assets/style.css?v=18">
+</head>
+<body>
+<main>
+	<header class="site-header" id="header">
+		<div class="header-inner">
+			<a href="#" class="brand text-gold">LINEAGE II</a>
+			<nav class="nav" id="site-nav">
+				<a href="#world">World</a>
+				<a href="#races">Races</a>
+				<a href="lore.html">Lore</a>
+				<a href="#features">Features</a>
+				<a href="about.html">About</a>
+				<a href="account.html">Account</a>
+			</nav>
+			<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+			<a href="#join" class="header-cta">Play Free</a>
+		</div>
+	</header>
+
+	<section class="hero">
+		<div class="hero-media" data-parallax="hero">
+			<video src="assets/hero-video.mp4" poster="assets/hero.jpg" autoplay muted loop playsinline></video>
+		</div>
+		<div class="hero-shade"></div>
+		<div class="hero-fade bg-fade"></div>
+		<div class="embers" aria-hidden="true"></div>
+		<div class="hero-content" data-parallax="hero-content">
+			<a href="#happening" class="live-pill" data-events-pill hidden></a>
+			<p class="hero-kicker">The Chronicle Returns</p>
+			<h1 class="hero-title text-gold">LINEAGE II</h1>
+			<p class="hero-subtitle">HIGH FIVE</p>
+			<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			<p class="hero-tagline">The gods are silent. The dragons awaken. Aden calls for heroes once more.</p>
+			<div class="actions">
+				<a href="#join" class="btn btn-primary">Start Your Journey</a>
+				<a href="#world" class="btn btn-outline">Discover Aden</a>
+			</div>
+		</div>
+		<a href="#world" class="scroll-hint">Scroll</a>
+	</section>
+
+	<section id="happening" class="happening" data-events="compact" data-events-optional hidden>
+		<div class="container">
+			<div class="section-head">
+				<p class="reveal kicker">Live from the realm</p>
+				<h2 class="reveal section-title text-gold">Happening Now</h2>
+				<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+				<p class="reveal lead happening-lead">Dragons stir, castles fall and heroes rise. This is what is unfolding in Aden right now.</p>
+			</div>
+			<div class="events-list" aria-live="polite"></div>
+			<div class="reveal actions happening-actions">
+				<a href="about.html#happening" class="btn btn-outline">All Events &amp; Bosses</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="world" class="world">
+		<div class="world-bg" data-parallax="world"></div>
+		<div class="world-shade"></div>
+		<div class="world-content">
+			<p class="reveal kicker">The World of Aden</p>
+			<h2 class="reveal section-title text-gold">A Kingdom Forged in War</h2>
+			<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			<p class="reveal lead">From the frozen peaks of Schuttgart to the burning lands of Primeval Isle, the continent of Aden is torn between seven castles and countless clans. In the High Five chronicle, the Seed of Destruction blooms, Freya awakens in her icy prison, and only the strongest will write history.</p>
+		</div>
+	</section>
+
+	<section id="races" class="races">
+		<div class="container">
+			<div class="section-head">
+				<p class="reveal kicker">Choose Your Blood</p>
+				<h2 class="reveal section-title text-gold">The Races</h2>
+				<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			</div>
+			<div class="races-grid">
+				<div class="reveal race-portrait">
+					<img src="assets/race-human.jpg" alt="Human" width="246" height="369" loading="lazy" class="is-active" data-race="human">
+					<img src="assets/race-elf.jpg" alt="Elf" width="222" height="333" loading="lazy" data-race="elf">
+					<img src="assets/race-darkelf.jpg" alt="Dark Elf" width="242" height="363" loading="lazy" data-race="darkelf">
+					<img src="assets/race-orc.jpg" alt="Orc" width="248" height="372" loading="lazy" data-race="orc">
+					<img src="assets/race-dwarf.jpg" alt="Dwarf" width="242" height="363" loading="lazy" data-race="dwarf">
+					<img src="assets/race-kamael.jpg" alt="Kamael" width="262" height="393" loading="lazy" data-race="kamael">
+					<div class="race-fade bg-fade"></div>
+				</div>
+				<div class="reveal">
+					<div class="race-tabs" role="tablist">
+						<button class="race-tab is-active" role="tab" aria-selected="true" data-race="human">Human</button>
+						<button class="race-tab" role="tab" aria-selected="false" data-race="elf">Elf</button>
+						<button class="race-tab" role="tab" aria-selected="false" data-race="darkelf">Dark Elf</button>
+						<button class="race-tab" role="tab" aria-selected="false" data-race="orc">Orc</button>
+						<button class="race-tab" role="tab" aria-selected="false" data-race="dwarf">Dwarf</button>
+						<button class="race-tab" role="tab" aria-selected="false" data-race="kamael">Kamael</button>
+					</div>
+					<p class="race-kicker" id="race-kicker">Knights of Aden</p>
+					<h3 class="race-name text-gold" id="race-name">Human</h3>
+					<p class="race-desc" id="race-desc">Versatile warriors and mages, sworn to the crown. Paladins, Duelists and Archmages rise from their ranks.</p>
+					<p class="race-note">Each race has unique bonuses and excels in different classes.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="legends" class="legends">
+		<div class="container">
+			<div class="section-head">
+				<p class="reveal kicker">History &amp; Lore</p>
+				<h2 class="reveal section-title text-gold">Legends of Aden</h2>
+				<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+				<p class="reveal lead legends-lead">From the shattering of the world to the age of High Five: the gods, the Giants and the empires whose ruins you will fight over.</p>
+			</div>
+			<div class="legends-grid">
+				<a href="lore.html#giants" class="reveal legend" style="transition-delay:0ms">
+					<span class="legend-num">Chapter III</span>
+					<h3>The Fall of the Giants</h3>
+					<p>They dared to create life. Einhasad answered with the Hammer of Despair, and Grandferion fell in a single day.</p>
+					<span class="legend-more">Read the chapter</span>
+				</a>
+				<a href="lore.html#shilen" class="reveal legend" style="transition-delay:120ms">
+					<span class="legend-num">Chapter IV</span>
+					<h3>Shilen's Betrayal</h3>
+					<p>The goddess of water fell to the abyss. Her children became the Dark Elves, and her dragons sleep, waiting.</p>
+					<span class="legend-more">Read the chapter</span>
+				</a>
+				<a href="lore.html#baium" class="reveal legend" style="transition-delay:240ms">
+					<span class="legend-num">Chapter VI</span>
+					<h3>The Tower of Insolence</h3>
+					<p>Emperor Baium built a tower to reach the gods. They sealed him at its summit, and his empire broke in two.</p>
+					<span class="legend-more">Read the chapter</span>
+				</a>
+			</div>
+			<div class="reveal actions">
+				<a href="lore.html" class="btn btn-outline">Read the Full History</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="features" class="features">
+		<div class="container">
+			<div class="section-head">
+				<p class="reveal kicker">Server Features</p>
+				<h2 class="reveal section-title text-gold">Glory Awaits</h2>
+				<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			</div>
+			<div class="features-grid">
+				<div class="reveal feature" style="transition-delay:0ms">
+					<span class="feature-num">01</span>
+					<h3>Castle Sieges</h3>
+					<p>Weekly sieges across Aden, Giran and Rune. Forge alliances, raise banners, claim the throne.</p>
+				</div>
+				<div class="reveal feature" style="transition-delay:120ms">
+					<span class="feature-num">02</span>
+					<h3>Grand Olympiad</h3>
+					<p>Prove yourself in the arena and earn the glory of Hero status.</p>
+				</div>
+				<div class="reveal feature" style="transition-delay:240ms">
+					<span class="feature-num">03</span>
+					<h3>Epic Raids</h3>
+					<p>Antharas, Valakas, Baium and Freya await the bravest clans.</p>
+				</div>
+				<div class="reveal feature" style="transition-delay:360ms">
+					<span class="feature-num">04</span>
+					<h3>Balanced Economy</h3>
+					<p>No pay-to-win. Retail-like drops and a player-driven market.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="rates" class="rates">
+		<div class="rates-media">
+			<video src="assets/hero-video.mp4" autoplay muted loop playsinline></video>
+		</div>
+		<div class="rates-shade"></div>
+		<div class="rates-content">
+			<h2 class="reveal section-title text-gold">Server Rates</h2>
+			<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			<!-- Keep in sync with overrides/game/config/rates.properties -->
+			<div class="rates-grid">
+				<div class="reveal rate"><div class="rate-value text-gold">x10</div><div class="rate-label">Experience</div></div>
+				<div class="reveal rate"><div class="rate-value text-gold">x5</div><div class="rate-label">Adena</div></div>
+				<div class="reveal rate"><div class="rate-value text-gold">x3</div><div class="rate-label">Drop</div></div>
+				<div class="reveal rate"><div class="rate-value text-gold">x1</div><div class="rate-label">Raid Boss</div></div>
+			</div>
+			<div class="reveal actions rates-actions">
+				<a href="about.html" class="btn btn-outline">Live Server Status</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="join" class="join">
+		<div class="join-media">
+			<!-- Loaded only when the section comes near the viewport (see app.js). -->
+			<video data-src="assets/bg.webm" muted loop playsinline preload="none"></video>
+		</div>
+		<div class="join-shade"></div>
+		<div class="join-content">
+			<h2 class="reveal join-title text-gold">Your Legend Begins</h2>
+			<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			<p class="reveal lead">Create your account, download the client and step into Aden today.</p>
+			<div class="reveal actions">
+				<a href="#" class="btn btn-primary">Create Account</a>
+				<a href="#" class="btn btn-outline">Download Client</a>
+			</div>
+		</div>
+	</section>
+
+	<footer class="site-footer">
+		<p class="footer-brand">LINEAGE II · HIGH FIVE</p>
+		<p>Fan server. Lineage II is a trademark of NCSOFT Corporation.</p>
+	</footer>
+</main>
+
+<script src="assets/app.js?v=7"></script>
+<script src="assets/events.js?v=1"></script>
+</body>
+</html>

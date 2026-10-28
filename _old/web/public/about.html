@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>About the Server — Lineage II: High Five</title>
+	<meta name="description" content="Live status of the server: login and game server status, players online, rates, world statistics, top players and castle owners.">
+	<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+	<link rel="stylesheet" href="assets/fonts.css">
+	<link rel="stylesheet" href="assets/style.css?v=18">
+</head>
+<body>
+<main>
+	<header class="site-header" id="header">
+		<div class="header-inner">
+			<a href="index.html" class="brand text-gold">LINEAGE II</a>
+			<nav class="nav" id="site-nav">
+				<a href="index.html#world">World</a>
+				<a href="index.html#races">Races</a>
+				<a href="lore.html">Lore</a>
+				<a href="index.html#features">Features</a>
+				<a href="about.html" aria-current="page">About</a>
+				<a href="account.html">Account</a>
+			</nav>
+			<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span></span><span></span><span></span></button>
+			<a href="index.html#join" class="header-cta">Play Free</a>
+		</div>
+	</header>
+
+	<section class="lore-hero about-hero">
+		<div class="lore-hero-bg" data-parallax="world"></div>
+		<div class="lore-hero-shade"></div>
+		<div class="embers" aria-hidden="true"></div>
+		<div class="lore-hero-content">
+			<p class="hero-kicker">Server Information</p>
+			<h1 class="lore-title text-gold" data-field="server.name">Bartz</h1>
+			<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			<p class="hero-tagline">A <span data-field="server.chronicle">High Five</span> server. Live status of the realm, updated every 30 seconds.</p>
+			<p class="about-updated" id="updated" aria-live="polite">Checking the realm…</p>
+		</div>
+	</section>
+
+	<section class="about-section" id="status">
+		<div class="container">
+			<div class="status-grid">
+				<div class="status-card" data-status="login">
+					<p class="status-label">Login Server</p>
+					<p class="status-value"><span class="status-dot" aria-hidden="true"></span><span class="status-text">—</span></p>
+					<p class="status-note">Port 2106</p>
+				</div>
+				<div class="status-card" data-status="game">
+					<p class="status-label">Game Server</p>
+					<p class="status-value"><span class="status-dot" aria-hidden="true"></span><span class="status-text">—</span></p>
+					<p class="status-note">Port 7777</p>
+				</div>
+				<div class="status-card">
+					<p class="status-label">Players Online</p>
+					<p class="status-value status-number text-gold" data-field="players.online">—</p>
+					<p class="status-note">Right now</p>
+				</div>
+				<div class="status-card">
+					<p class="status-label">Geodata</p>
+					<p class="status-value status-number text-gold" data-field="server.geodataRegions">—</p>
+					<p class="status-note">Regions loaded</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="happening" class="happening" data-events="full">
+		<div class="container">
+			<div class="section-head">
+				<p class="reveal kicker">Live from the realm</p>
+				<h2 class="reveal section-title text-gold">Happening Now</h2>
+				<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+				<p class="reveal lead happening-lead">Every boss, siege and contest on the server, updated live.</p>
+			</div>
+			<div class="events-list" aria-live="polite"></div>
+		</div>
+	</section>
+
+	<section class="about-section" id="rates">
+		<div class="container">
+			<div class="section-head">
+				<p class="reveal kicker">Read from the server's config</p>
+				<h2 class="reveal section-title text-gold">Server Rates</h2>
+				<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			</div>
+			<div class="about-rates">
+				<div class="rate"><div class="rate-value text-gold" data-rate="xp">x10</div><div class="rate-label">Experience</div></div>
+				<div class="rate"><div class="rate-value text-gold" data-rate="sp">x10</div><div class="rate-label">Skill Points</div></div>
+				<div class="rate"><div class="rate-value text-gold" data-rate="adena">x5</div><div class="rate-label">Adena</div></div>
+				<div class="rate"><div class="rate-value text-gold" data-rate="drop">x3</div><div class="rate-label">Drop</div></div>
+				<div class="rate"><div class="rate-value text-gold" data-rate="spoil">x3</div><div class="rate-label">Spoil</div></div>
+				<div class="rate"><div class="rate-value text-gold" data-rate="raid">x1</div><div class="rate-label">Raid Boss</div></div>
+				<div class="rate"><div class="rate-value text-gold" data-rate="questXp">x10</div><div class="rate-label">Quest XP / SP</div></div>
+				<div class="rate"><div class="rate-value text-gold" data-rate="questAdena">x5</div><div class="rate-label">Quest Adena</div></div>
+			</div>
+			<p class="about-footnote">Party XP bonus, herbs, manor and quest item drops are retail (x1). Max level <span data-field="server.maxLevel">85</span>.</p>
+		</div>
+	</section>
+
+	<section class="about-section" id="world-stats">
+		<div class="container">
+			<div class="section-head">
+				<p class="reveal kicker">The realm in numbers</p>
+				<h2 class="reveal section-title text-gold">World Statistics</h2>
+				<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			</div>
+			<div class="totals-grid">
+				<div class="total"><p class="total-value text-gold" data-field="totals.accounts">—</p><p class="total-label">Accounts</p></div>
+				<div class="total"><p class="total-value text-gold" data-field="totals.characters">—</p><p class="total-label">Characters</p></div>
+				<div class="total"><p class="total-value text-gold" data-field="totals.clans">—</p><p class="total-label">Clans</p></div>
+			</div>
+			<h3 class="about-subtitle">Races of Aden</h3>
+			<div class="race-bars" id="race-bars">
+				<p class="about-empty">Waiting for the realm…</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="about-section" id="rankings">
+		<div class="container">
+			<div class="section-head">
+				<p class="reveal kicker">Heroes of the realm</p>
+				<h2 class="reveal section-title text-gold">Top Players</h2>
+				<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			</div>
+			<div class="rankings-grid">
+				<div class="ranking">
+					<h3 class="about-subtitle">Highest Level</h3>
+					<ol class="ranking-list" id="top-level"><li class="about-empty">—</li></ol>
+				</div>
+				<div class="ranking">
+					<h3 class="about-subtitle">Most PvP Kills</h3>
+					<ol class="ranking-list" id="top-pvp"><li class="about-empty">—</li></ol>
+				</div>
+			</div>
+			<p class="about-footnote">Game Masters are not ranked.</p>
+		</div>
+	</section>
+
+	<section class="about-section" id="castles">
+		<div class="container">
+			<div class="section-head">
+				<p class="reveal kicker">Lords of the land</p>
+				<h2 class="reveal section-title text-gold">Castles</h2>
+				<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			</div>
+			<div class="castle-grid" id="castle-grid">
+				<p class="about-empty">—</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="about-section about-connect" id="connect">
+		<div class="container">
+			<div class="section-head">
+				<p class="reveal kicker">Join the realm</p>
+				<h2 class="reveal section-title text-gold">How to Connect</h2>
+				<div class="divider" aria-hidden="true"><span></span><span class="diamond"></span><span></span></div>
+			</div>
+			<ol class="connect-steps">
+				<li><h3>Get the client</h3><p>A clean <strong>Lineage II High Five Part 5</strong> client (Windows; on macOS through CrossOver, Whisky or a virtual machine).</p></li>
+				<li><h3>Point it to the server</h3><p>Add this line to your <code>hosts</code> file (as Administrator):</p><pre><code><span data-field="server.address">server-address</span> l2authd.lineage2.com</code></pre></li>
+				<li><h3>Log in</h3><p>Type any new username and password: your account is created on first login.</p></li>
+			</ol>
+		</div>
+	</section>
+
+	<footer class="site-footer">
+		<p class="footer-brand">LINEAGE II · HIGH FIVE</p>
+		<p>Fan server. Lineage II is a trademark of NCSOFT Corporation.</p>
+	</footer>
+</main>
+
+<script src="assets/app.js?v=7"></script>
+<script src="assets/about.js?v=1"></script>
+<script src="assets/events.js?v=1"></script>
+</body>
+</html>

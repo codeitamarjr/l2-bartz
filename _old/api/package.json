@@ -1,0 +1,17 @@
+{
+  "name": "l2j-stats-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Read-only server stats for the L2J website",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "mysql2": "3.11.5"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

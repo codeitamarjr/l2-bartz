@@ -1,0 +1,20 @@
+# Secrets: passwords, keys and tokens live only in .env (copy .env.example and fill it in). Never commit them.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Runtime data: the MariaDB files (accounts and password hashes), game state, logs and geodata (~1 GB).
+/data/
+
+# Build output of ./build.sh: the image archive (~350 MB) and copies of files kept here.
+/dist/
+
+# L2J sources: four clones of the official repositories (see "1. Build on the Mac" in the README).
+/src/
+
+# Dependencies and caches
+node_modules/
+.DS_Store
+Thumbs.db
