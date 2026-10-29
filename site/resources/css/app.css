@@ -399,6 +399,7 @@ img, video { display: block; max-width: 100%; }
 .about-empty { color: var(--muted-foreground); font-style: italic; }
 
 .status-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.status-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
 .status-card { border: 1px solid color-mix(in oklab, var(--primary) 30%, transparent); background: color-mix(in oklab, var(--card) 60%, transparent); padding: 1.5rem; text-align: center; }
 .status-label { font-family: var(--font-display); font-size: .7rem; text-transform: uppercase; letter-spacing: .3em; color: var(--muted-foreground); }
 .status-value { margin-top: .75rem; display: flex; align-items: center; justify-content: center; gap: .6rem; font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--foreground); }
@@ -450,7 +451,8 @@ img, video { display: block; max-width: 100%; }
 .connect-steps pre { margin-top: .75rem; padding: .75rem 1rem; border: 1px solid var(--border); background: var(--card); overflow-x: auto; color: var(--gold-bright); }
 
 @media (min-width: 768px) {
-	.status-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	.status-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	.status-grid > :last-child:nth-child(odd) { grid-column: auto; }
 	.about-rates { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 	.rankings-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

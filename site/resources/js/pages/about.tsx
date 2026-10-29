@@ -135,11 +135,6 @@ export default function About({ status, events }: Props) {
                         <StatusCard label={t('Login Server', 'Servidor de Login')} up={status.status.login} note={`${t('Port', 'Porta')} 2106`} />
                         <StatusCard label={t('Game Server', 'Servidor do Jogo')} up={status.status.game} note={`${t('Port', 'Porta')} 7777`} />
                         <div className="status-card">
-                            <p className="status-label">{t('Players Online', 'Jogadores Online')}</p>
-                            <p className="status-value status-number text-gold">{status.players ? fmt(status.players.online) : '—'}</p>
-                            <p className="status-note">{t('Right now', 'Agora mesmo')}</p>
-                        </div>
-                        <div className="status-card">
                             <p className="status-label">Geodata</p>
                             <p className="status-value status-number text-gold">{fmt(server.geodataRegions)}</p>
                             <p className="status-note">{t('Regions loaded', 'Regiões carregadas')}</p>

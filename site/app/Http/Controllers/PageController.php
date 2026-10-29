@@ -72,7 +72,7 @@ class PageController extends Controller
             'events' => fn (): ?array => rescue(fn (): array => $events->get()),
             'seo' => Seo::make(
                 __('Server Status, Rates and Rankings'),
-                __('Live status of the :brand Lineage II High Five server: players online, rates, top players, castle owners, boss timers and upcoming sieges. How to connect.', ['brand' => Seo::brand()]),
+                __('Live status of the :brand Lineage II High Five server: rates, top players, castle owners, boss timers and upcoming sieges. How to connect.', ['brand' => Seo::brand()]),
             ),
         ]);
     }

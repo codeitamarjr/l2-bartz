@@ -137,9 +137,9 @@ or start the client with `l2.bin IP=<pi-ip>`. On macOS the client needs CrossOve
 
 For players, the website offers a launcher: `site/public/downloads/start-L2-Bartz.bat` (served at
 `/downloads/start-L2-Bartz.bat`, linked from About -> How to Connect). Placed in the client's `system` folder, it
-asks for Administrator rights, looks up `play.l2-bartz.itjunior.dev` (falling back to a fixed IP) and starts
-`L2.bin IP=<address>`, so no hosts file is needed and it survives a change of home IP. Edit the server name and the
-fallback IP at the top of its PowerShell line if they change. Keep its Windows (CRLF) line endings.
+asks for Administrator rights and starts `L2.bin IP=play.l2-bartz.itjunior.dev`, so no hosts file is needed and it
+survives a change of home IP. Change the address in its PowerShell line if the game's domain changes. Keep its
+Windows (CRLF) line endings.
 
 Ports: TCP 2106 (login) and 7777 (game). Only forward them on your router if players outside your LAN should connect, and then set `PUBLIC_HOST` to your public IP or DNS name.
 
